@@ -1,10 +1,10 @@
 # -*- coding : utf -8 -*-
-import pandas as py
+import pandas as pd
 #First, we import the data from the csv file included
 def clean_data(csv_filename = 'olympics.csv'):
     df = pd.read_csv(csv_filename, index_col = 0, skiprows=1)
 
-    for col in df.columns():
+    for col in df.columns:
         if col[:2] == '01':
             df.rename(columns={col:'Gold'+col[4:]}, inplace = True)
         if col[:2] == '02':
