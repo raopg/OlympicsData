@@ -11,8 +11,9 @@ def clean_data(csv_filename = 'olympics.csv'):
             df.rename(columns={col:'Silver'+col[4:]}, inplace = True)
         if col[:2] == '03':
             df.rename(columns={col:'Bronze'+col[4:]}, inplace = True)
-        if col[:1]:
-            df.rename(columns={col:'#'+col[1:]}, inplace = True)
+        for e in col[:1]:
+            if ord(e) > 128:
+                df.rename(columns={col:'#'+col[1:]}, inplace = True)
 
     names_ids =  df.index.str.split('\s\(')
 
@@ -22,7 +23,7 @@ def clean_data(csv_filename = 'olympics.csv'):
     print(df.head) # Print the first few elements to ensure that this data has been cleaned and is ready for use.
     return df 
     
-if __name__ = "__main__":
+if __name__ == "__main__":
     print("-------------------------------- \n")
     df = None
     print('This program cleans the Olympics data for all countries which has participated in Summer and Winter Olympics \n')
